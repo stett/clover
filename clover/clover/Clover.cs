@@ -170,6 +170,7 @@ namespace clover
                 String str_hud = "State:       " + str_state + "\n" +
                                  "Phase:       " + evolver.get_phase_str() + " - " + evolver.get_phase_completion() * 100 + "%\n" +
                                  "Gen:         " + evolver.get_num_generations() + "\n" +
+                                 "Fixture:     " + evolver.get_num_fixtures() + "\n" +
                                  "Most Fit:    " + evolver.get_best_fitness() * 100 + "%" + "\n" +
                                  "Time:        " + evolver.get_time() + "\n" +
                                  "Time/gen:    " + evolver.get_time().TotalSeconds / Math.Max(evolver.get_num_generations(), 1.0f) + "s\n" +

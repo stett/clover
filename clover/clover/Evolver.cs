@@ -21,20 +21,21 @@ namespace clover
          * Constant settings
          */
 
-        public const int POOL_SIZE = 400;
+        public const int POOL_SIZE = 500;
         public const int GENOME_LENGTH = 32;
         public const float GENE_MUTATION_PROB = 0.08f; //.05
         public const float GENOME_MUTATION_PROB = 0.05f; //.001
         public const int POINT_TEST_RESOLUTION = 5;
         public static Vector2 REFERENCE_SIZE = new Vector2(150, 180);
         public static Vector2 TEXTURE_SIZE = new Vector2(40, 40);
+        public const int GENS_PER_FIXTURE = 2;
 
 
         /*
          * Types
          */
 
-        public enum Phases { Initialize, CalculateFitnesses, MakeBabies, MutateBabies, DiscardParents };
+        public enum Phases { Initialize, RandomizePopulation, GenerateFixture, CalculateFitnesses, MakeBabies, MutateBabies, DiscardParents };
 
 
         /*
@@ -43,6 +44,7 @@ namespace clover
 
         Phases phase;
         Texture2D reference;
+        Texture2D fixture;
         Texture2D fittest_texture;
         List<Texture2D> textures;
         RenderTarget2D target;
@@ -51,6 +53,7 @@ namespace clover
         Generation next_generation;
         Genome fittest;
         int num_gens;
+        int num_fixtures;
         int i;
         int i_max;
         int i_steps;
@@ -69,6 +72,7 @@ namespace clover
             textures = new List<Texture2D>();
             game = _game;
             num_gens = 0;
+            num_fixtures = 0;
             set_phase(Phases.Initialize);
             fitness_history = new List<float>();
         }
@@ -90,13 +94,32 @@ namespace clover
             {
                 if (phase == Phases.Initialize)
                 {
+                    i_max = 0;
+                    set_phase(Phases.RandomizePopulation);
+                }
+                else if (phase == Phases.RandomizePopulation)
+                {
                     // Generate a random initial generation. In this context,
                     // the counter "i" is meaningless.
                     i_max = 0;
                     current_generation = Generation.Rand(GENOME_LENGTH);//num_textures());
                     set_phase(Phases.CalculateFitnesses);
-                    num_gens = 0;
                     fittest = null;
+                }
+                else if (phase == Phases.GenerateFixture)
+                {
+                    // Generate a fixture texture. That is, render the current
+                    // fittest individual to a "backdrop" which will be rendered
+                    // behiind all subsequent generations. It is these fixtures
+                    // which will eventually add up to the final image. Once the new
+                    // fixture is rendered, we completely rediversify the population
+                    i_max = 0;
+                    if (num_gens - num_fixtures * GENS_PER_FIXTURE >= GENS_PER_FIXTURE)
+                    {
+                        update_fixture();
+                        num_fixtures++;
+                        set_phase(Phases.RandomizePopulation);
+                    } else set_phase(Phases.CalculateFitnesses);
                 }
                 else if (phase == Phases.CalculateFitnesses)
                 {
@@ -170,7 +193,7 @@ namespace clover
                     i_max = 0;
                     current_generation = next_generation;
                     num_gens++;
-                    set_phase(Phases.CalculateFitnesses);
+                    set_phase(Phases.GenerateFixture);
                 }
             }
 
@@ -194,9 +217,17 @@ namespace clover
             game.GraphicsDevice.SetRenderTarget(target);
             game.GraphicsDevice.Clear(Color.White);
 
-            // Draw Textures to the render target
+            // Begin drawing to the render target
             SpriteBatch sprite_batch = new SpriteBatch(game.GraphicsDevice);
             sprite_batch.Begin(SpriteSortMode.Immediate, Graphics.MultiplyBlendState());
+
+            // Render the fixture backdrop
+            if (num_fixtures > 0)
+            {
+                sprite_batch.Draw(fixture, Vector2.Zero, Color.White);
+            }
+
+            // Draw each gene
             for (int i = 0; i < GENOME_LENGTH; i++)
             {
                 Gene gene = genome.genes[i];
@@ -211,6 +242,20 @@ namespace clover
 
             // Reset the render target
             game.GraphicsDevice.SetRenderTarget(null);
+        }
+
+        void update_fixture()
+        {
+            // Save the rendering of the current fittest individual
+            fittest_texture.GetData(target_colors);
+            fixture.SetData(target_colors);
+            /*game.GraphicsDevice.SetRenderTarget(fixture);
+            game.GraphicsDevice.Clear(Color.White);
+            SpriteBatch sprite_batch = new SpriteBatch(game.GraphicsDevice);
+            sprite_batch.Begin(SpriteSortMode.Immediate, Graphics.MultiplyBlendState());
+
+            sprite_batch.End();
+            game.GraphicsDevice.SetRenderTarget(null);*/
         }
 
         float calculate_fitness(Genome genome)
@@ -310,6 +355,7 @@ namespace clover
 
             target = new RenderTarget2D(game.GraphicsDevice, width, height);
             fittest_texture = new Texture2D(game.GraphicsDevice, width, height);
+            fixture = new Texture2D(game.GraphicsDevice, width, height);
             reference_colors = new Color[width * height];
             reference.GetData(reference_colors);
             target_colors = new Color[width * height];
@@ -337,9 +383,13 @@ namespace clover
             if (fittest != null) return fittest.fitness;
             else return 0.0f;
         }
-        public float get_num_generations()
+        public int get_num_generations()
         {
             return num_gens;
+        }
+        public int get_num_fixtures()
+        {
+            return num_fixtures;
         }
         public Phases get_phase()
         {
@@ -353,6 +403,7 @@ namespace clover
         public String get_phase_str()
         {
             if (phase == Phases.Initialize) return "Initializing";
+            else if (phase == Phases.GenerateFixture) return "Generating Fixture";
             else if (phase == Phases.CalculateFitnesses) return "Calculating Fitness";
             else if (phase == Phases.MakeBabies) return "Making Babies";
             else if (phase == Phases.MutateBabies) return "Mutating Babies";
