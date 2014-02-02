@@ -10,10 +10,10 @@ namespace clover
         public List<Gene> genes = new List<Gene>();
         public float fitness = 0.0f;
         
-        public static Genome Rand(int genes)
+        public static Genome Rand(int genes, float fitness = 0)
         {
             Genome genome = new Genome();
-            for (int i = 0; i < genes; i++) genome.genes.Add(Gene.Rand());
+            for (int i = 0; i < genes; i++) genome.genes.Add(Gene.Rand(fitness));
             return genome;
         }
     }

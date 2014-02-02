@@ -37,7 +37,7 @@ namespace clover
          * Constants
          */
 
-        const float SCALE = 4.0f;
+        const float SCALE = 2.0f;
 
         /*
          * Settings
@@ -197,7 +197,7 @@ namespace clover
                     sprite_batch.Draw(pixel, new Vector2(graph_scale * x, graphics.PreferredBackBufferHeight - fitness * 100.0f), null, Color.HotPink, 0, Vector2.Zero, scale, SpriteEffects.None, 0.0f);
                     x++;
                 }
-                sprite_batch.Draw(pixel, new Vector2(0, graphics.PreferredBackBufferHeight - 100.0f), null, Color.HotPink, 0, Vector2.Zero, new Vector2(graphics.PreferredBackBufferWidth / pixel.Width, 1.0f / pixel.Height), SpriteEffects.None, 0.0f);
+                sprite_batch.Draw(pixel, new Vector2(0, graphics.PreferredBackBufferHeight - 100.0f), null, Color.HotPink, 0, Vector2.Zero, new Vector2(graphics.PreferredBackBufferWidth / (pixel.Width - 1), 1.0f / pixel.Height), SpriteEffects.None, 0.0f);
             }
 
             sprite_batch.End();

@@ -11,10 +11,10 @@ namespace clover
         public int fittest_individual = 0;
         public float total_fitness = 0.0f;
 
-        public static Generation Rand(int genes)
+        public static Generation Rand(int genes, float fitness = 0)
         {
             Generation generation = new Generation();
-            for (int i = 0; i < Evolver.POOL_SIZE; i++) generation.individuals.Add(Genome.Rand(genes));
+            for (int i = 0; i < Evolver.POOL_SIZE; i++) generation.individuals.Add(Genome.Rand(genes, fitness));
             return generation;
         }
 

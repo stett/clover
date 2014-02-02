@@ -23,14 +23,14 @@ namespace clover
          */
 
         public const int POOL_SIZE = 400;
-        public const int GENOME_LENGTH = 32;
+        public const int GENOME_LENGTH = 16;
         public const float GENE_MUTATION_PROB = 0.08f; //.05
         public const float GENOME_MUTATION_PROB = 0.05f; //.001
         public const int POINT_TEST_RESOLUTION = 2;
-        public const int GENS_PER_FIXTURE = 1;
-        public static float TEXTURE_OPACITY = .8f;
-        public static Vector2 REFERENCE_SIZE = new Vector2(150, 180);
-        public static Vector2 TEXTURE_SIZE = new Vector2(50, 50);
+        public const int GENS_PER_FIXTURE = 5;
+        public static Vector2 REFERENCE_SIZE = new Vector2(150, 180) * 2f;
+        public static Vector2 TEXTURE_SIZE = new Vector2(50) * 1.5f;
+        public static Vector2 FULL_RESOLUTION = new Vector2(2000, 2400);
 
 
         /*
@@ -63,6 +63,7 @@ namespace clover
         Color[] target_colors;
         List<float> fitness_history;
         TimeSpan time;
+        DateTime time_of_initialization;
 
 
         /*
@@ -97,7 +98,9 @@ namespace clover
                 if (phase == Phases.Initialize)
                 {
                     i_max = 0;
+                    time_of_initialization = DateTime.Now;
                     set_phase(Phases.RandomizePopulation);
+                    fittest = null;
                 }
                 else if (phase == Phases.GenerateFixture)
                 {
@@ -119,9 +122,8 @@ namespace clover
                     // Generate a random initial generation. In this context,
                     // the counter "i" is meaningless.
                     i_max = 0;
-                    current_generation = Generation.Rand(GENOME_LENGTH);//num_textures());
+                    current_generation = Generation.Rand(GENOME_LENGTH, get_best_fitness());//num_textures());
                     set_phase(Phases.CalculateFitnesses);
-                    fittest = null;
                 }
                 else if (phase == Phases.CalculateFitnesses)
                 {
@@ -229,6 +231,11 @@ namespace clover
                 sprite_batch.Draw(fixture, Vector2.Zero, Color.White);
             }
 
+            // Calculate the size multiplier... this basically shrinks all parts
+            // as the image becomes fitter, so that they can take care of finer
+            // details.
+            //float fit_scale = 1.25f * (1.5f - get_best_fitness());
+
             // Draw each gene
             for (int i = 0; i < GENOME_LENGTH; i++)
             {
@@ -237,8 +244,8 @@ namespace clover
                 //Vector2 scale = new Vector2(
                 //    TEXTURE_SIZE.X / texture.Width * (float)Math.Cos(gene.azimuth),
                 //    TEXTURE_SIZE.Y / texture.Height * (float)Math.Cos(gene.pitch));
-                Vector2 scale = new Vector2(gene.size.X / texture.Width, gene.size.Y / texture.Height);
-                sprite_batch.Draw(texture, gene.position, null, gene.color * TEXTURE_OPACITY, gene.angle, TEXTURE_SIZE * 0.5f, scale, SpriteEffects.None, 0.0f);
+                Vector2 scale = new Vector2(gene.size.X / texture.Width, gene.size.Y / texture.Height);// *fit_scale;
+                sprite_batch.Draw(texture, gene.position, null, gene.color/* * TEXTURE_OPACITY*/, gene.angle, /*TEXTURE_SIZE * scale * 0.5f*/ scale * .5f, scale, SpriteEffects.None, 0.0f);
             }
             sprite_batch.End();
 
@@ -253,11 +260,8 @@ namespace clover
             fixture.SetData(target_colors);
             
             // Save the fixture to a file
-            String dirname = "evolution/" + DateTime.Now.ToString("MM-dd-yy") + "/";
-            String fname = DateTime.Now.ToString("H-mm-ss") + ".jpeg";
-            Directory.CreateDirectory(dirname);
-            Stream stream = File.Create(dirname + fname); 
-            fixture.SaveAsJpeg(stream, fixture.Width, fixture.Height);
+            String fname = num_fixtures.ToString() + ".jpeg";
+            save(fname);
         }
 
         float calculate_fitness(Genome genome)
@@ -329,7 +333,27 @@ namespace clover
             // Loop through each gene, randomly mutating
             for (int i = 0; i < individual.genes.Count; i++)
                 if (Utils.rand() < GENE_MUTATION_PROB)
-                    individual.genes[i] = Gene.Rand();
+                    individual.genes[i] = Gene.Rand(get_best_fitness());
+        }
+
+        void save(String fname, bool full=false)
+        {
+            // Create the file IO stream
+            String dirname = "evolution/" + time_of_initialization.ToString("MM-dd-yy-H-mm-ss") + "/";
+            Directory.CreateDirectory(dirname);
+            Stream stream = File.Create(dirname + fname);
+
+            // If we need to save in current working dimensions,
+            // simply save the fittest texture to a file
+            if (full)
+            {
+                Texture2D full_texture = new Texture2D(game.GraphicsDevice, (int)FULL_RESOLUTION.X, (int)FULL_RESOLUTION.Y);
+                render(fittest);
+            }
+            else
+            {
+                fittest_texture.SaveAsJpeg(stream, fixture.Width, fixture.Height);
+            }
         }
 
         #endregion
@@ -345,22 +369,32 @@ namespace clover
         }
         public void set_reference(Texture2D new_reference)
         {
-            // Get the new reference texture
-            reference = new_reference;
-            int width = reference.Width;
-            int height = reference.Height;
+            int width = (int)REFERENCE_SIZE.X;
+            int height = (int)REFERENCE_SIZE.Y;
 
-            // Stretch it to our specific target size
-            /*game.GraphicsDevice.SetRenderTarget(target);
-            game.GraphicsDevice.Clear(Color.White);
-            game.GraphicsDevice.SetRenderTarget(null);*/
-
+            // Create the new render target and textures
+            reference = new Texture2D(game.GraphicsDevice, width, height);
             target = new RenderTarget2D(game.GraphicsDevice, width, height);
             fittest_texture = new Texture2D(game.GraphicsDevice, width, height);
             fixture = new Texture2D(game.GraphicsDevice, width, height);
+
+            //
             reference_colors = new Color[width * height];
-            reference.GetData(reference_colors);
             target_colors = new Color[width * height];
+            
+            // Resize the new_reference to the proper reference size
+            // and save it in reference.
+            SpriteBatch batch = new SpriteBatch(game.GraphicsDevice);
+            game.GraphicsDevice.SetRenderTarget(target);
+            batch.Begin();
+            batch.Draw(new_reference, new Rectangle(0, 0, width, height), Color.White);
+            batch.End();
+            game.GraphicsDevice.SetRenderTarget(null);
+            target.GetData(target_colors);
+            reference.SetData(target_colors);
+
+            //
+            reference.GetData(reference_colors);
             set_phase(Phases.Initialize);
         }
         public Texture2D get_reference()
