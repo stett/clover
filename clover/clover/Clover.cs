@@ -37,7 +37,7 @@ namespace clover
          * Constants
          */
 
-        const float SCALE = 2.0f;
+        const float SCALE = 3.0f;
 
         /*
          * Settings

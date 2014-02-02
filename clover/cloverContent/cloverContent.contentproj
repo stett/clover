@@ -42,11 +42,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="images\reference-beard.jpg">
-      <Name>reference-beard</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
     <Compile Include="images\reference-full.jpg">
       <Name>reference-full</Name>
       <Importer>TextureImporter</Importer>

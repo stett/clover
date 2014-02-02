@@ -24,12 +24,12 @@ namespace clover
 
         public const int POOL_SIZE = 400;
         public const int GENOME_LENGTH = 16;
-        public const float GENE_MUTATION_PROB = 0.08f; //.05
-        public const float GENOME_MUTATION_PROB = 0.05f; //.001
+        public const float GENE_MUTATION_PROB = .1f;//0.08f; //.05
+        public const float GENOME_MUTATION_PROB = .1f;//0.05f; //.001
         public const int POINT_TEST_RESOLUTION = 2;
-        public const int GENS_PER_FIXTURE = 5;
-        public static Vector2 REFERENCE_SIZE = new Vector2(150, 180) * 2f;
-        public static Vector2 TEXTURE_SIZE = new Vector2(50) * 1.5f;
+        public const int GENS_PER_FIXTURE = 15;
+        public static Vector2 REFERENCE_SIZE = new Vector2(150, 180);
+        public static Vector2 TEXTURE_SIZE = new Vector2(60);
         public static Vector2 FULL_RESOLUTION = new Vector2(2000, 2400);
 
 
@@ -333,7 +333,7 @@ namespace clover
             // Loop through each gene, randomly mutating
             for (int i = 0; i < individual.genes.Count; i++)
                 if (Utils.rand() < GENE_MUTATION_PROB)
-                    individual.genes[i] = Gene.Rand(get_best_fitness());
+                    individual.genes[i] = Gene.Mutate(individual.genes[i]);//Gene.Rand(get_best_fitness());
         }
 
         void save(String fname, bool full=false)
