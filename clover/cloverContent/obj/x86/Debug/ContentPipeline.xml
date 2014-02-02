@@ -1,0 +1,361 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline">
+  <Asset Type="Pipeline:BuildItemCollection">
+    <Item>
+      <Source>images\reference-beard.jpg</Source>
+      <Name>images\reference-beard</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\stett\Source\clover\clover\clover\bin\x86\Debug\Content\images\reference-beard.xnb</Output>
+      <Time>2014-01-31T20:27:56.5438722-08:00</Time>
+    </Item>
+    <Item>
+      <Source>images\reference-full.jpg</Source>
+      <Name>images\reference-full</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\stett\Source\clover\clover\clover\bin\x86\Debug\Content\images\reference-full.xnb</Output>
+      <Time>2014-01-31T20:23:31.0882798-08:00</Time>
+    </Item>
+    <Item>
+      <Source>images\reference.jpg</Source>
+      <Name>images\reference</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\stett\Source\clover\clover\clover\bin\x86\Debug\Content\images\reference.xnb</Output>
+      <Time>2014-02-01T20:27:07.7931241-08:00</Time>
+    </Item>
+    <Item>
+      <Source>fonts\consolas.spritefont</Source>
+      <Name>fonts\consolas</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\stett\Source\clover\clover\clover\bin\x86\Debug\Content\fonts\consolas.xnb</Output>
+      <Time>2013-07-16T12:31:18.8749292-07:00</Time>
+    </Item>
+    <Item>
+      <Source>images\textures\tex - Copy (10).jpg</Source>
+      <Name>images\textures\tex - Copy (10)</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\stett\Source\clover\clover\clover\bin\x86\Debug\Content\images\textures\tex - Copy (10).xnb</Output>
+      <Time>2014-02-01T20:28:45.6495485-08:00</Time>
+    </Item>
+    <Item>
+      <Source>images\textures\tex - Copy (11).jpg</Source>
+      <Name>images\textures\tex - Copy (11)</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\stett\Source\clover\clover\clover\bin\x86\Debug\Content\images\textures\tex - Copy (11).xnb</Output>
+      <Time>2014-02-01T20:28:45.6495485-08:00</Time>
+    </Item>
+    <Item>
+      <Source>images\textures\tex - Copy (12).jpg</Source>
+      <Name>images\textures\tex - Copy (12)</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\stett\Source\clover\clover\clover\bin\x86\Debug\Content\images\textures\tex - Copy (12).xnb</Output>
+      <Time>2014-02-01T20:28:45.6495485-08:00</Time>
+    </Item>
+    <Item>
+      <Source>images\textures\tex - Copy (2).jpg</Source>
+      <Name>images\textures\tex - Copy (2)</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\stett\Source\clover\clover\clover\bin\x86\Debug\Content\images\textures\tex - Copy (2).xnb</Output>
+      <Time>2014-02-01T20:28:45.6495485-08:00</Time>
+    </Item>
+    <Item>
+      <Source>images\textures\tex - Copy (3).jpg</Source>
+      <Name>images\textures\tex - Copy (3)</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\stett\Source\clover\clover\clover\bin\x86\Debug\Content\images\textures\tex - Copy (3).xnb</Output>
+      <Time>2014-02-01T20:28:45.6495485-08:00</Time>
+    </Item>
+    <Item>
+      <Source>images\textures\tex - Copy (4).jpg</Source>
+      <Name>images\textures\tex - Copy (4)</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\stett\Source\clover\clover\clover\bin\x86\Debug\Content\images\textures\tex - Copy (4).xnb</Output>
+      <Time>2014-02-01T20:28:45.6495485-08:00</Time>
+    </Item>
+    <Item>
+      <Source>images\textures\tex - Copy (5).jpg</Source>
+      <Name>images\textures\tex - Copy (5)</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\stett\Source\clover\clover\clover\bin\x86\Debug\Content\images\textures\tex - Copy (5).xnb</Output>
+      <Time>2014-02-01T20:28:45.6495485-08:00</Time>
+    </Item>
+    <Item>
+      <Source>images\textures\tex - Copy (6).jpg</Source>
+      <Name>images\textures\tex - Copy (6)</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\stett\Source\clover\clover\clover\bin\x86\Debug\Content\images\textures\tex - Copy (6).xnb</Output>
+      <Time>2014-02-01T20:28:45.6495485-08:00</Time>
+    </Item>
+    <Item>
+      <Source>images\textures\tex - Copy (7).jpg</Source>
+      <Name>images\textures\tex - Copy (7)</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\stett\Source\clover\clover\clover\bin\x86\Debug\Content\images\textures\tex - Copy (7).xnb</Output>
+      <Time>2014-02-01T20:28:45.6495485-08:00</Time>
+    </Item>
+    <Item>
+      <Source>images\textures\tex - Copy (8).jpg</Source>
+      <Name>images\textures\tex - Copy (8)</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\stett\Source\clover\clover\clover\bin\x86\Debug\Content\images\textures\tex - Copy (8).xnb</Output>
+      <Time>2014-02-01T20:28:45.6495485-08:00</Time>
+    </Item>
+    <Item>
+      <Source>images\textures\tex - Copy (9).jpg</Source>
+      <Name>images\textures\tex - Copy (9)</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\stett\Source\clover\clover\clover\bin\x86\Debug\Content\images\textures\tex - Copy (9).xnb</Output>
+      <Time>2014-02-01T20:28:45.6495485-08:00</Time>
+    </Item>
+    <Item>
+      <Source>images\textures\tex - Copy.jpg</Source>
+      <Name>images\textures\tex - Copy</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\stett\Source\clover\clover\clover\bin\x86\Debug\Content\images\textures\tex - Copy.xnb</Output>
+      <Time>2014-02-01T20:28:45.6495485-08:00</Time>
+    </Item>
+    <Item>
+      <Source>images\textures\tex.jpg</Source>
+      <Name>images\textures\tex</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\stett\Source\clover\clover\clover\bin\x86\Debug\Content\images\textures\tex.xnb</Output>
+      <Time>2014-02-01T20:28:45.6495485-08:00</Time>
+    </Item>
+    <Item>
+      <Source>images\textures\tex - Copy (13).jpg</Source>
+      <Name>images\textures\tex - Copy (13)</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\stett\Source\clover\clover\clover\bin\x86\Debug\Content\images\textures\tex - Copy (13).xnb</Output>
+      <Time>2014-02-01T20:28:45.6495485-08:00</Time>
+    </Item>
+    <Item>
+      <Source>images\textures\tex - Copy (14).jpg</Source>
+      <Name>images\textures\tex - Copy (14)</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\stett\Source\clover\clover\clover\bin\x86\Debug\Content\images\textures\tex - Copy (14).xnb</Output>
+      <Time>2014-02-01T20:28:45.6495485-08:00</Time>
+    </Item>
+    <Item>
+      <Source>images\textures\tex - Copy (15).jpg</Source>
+      <Name>images\textures\tex - Copy (15)</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\stett\Source\clover\clover\clover\bin\x86\Debug\Content\images\textures\tex - Copy (15).xnb</Output>
+      <Time>2014-02-01T20:28:45.6495485-08:00</Time>
+    </Item>
+    <Item>
+      <Source>images\textures\tex - Copy (16).jpg</Source>
+      <Name>images\textures\tex - Copy (16)</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\stett\Source\clover\clover\clover\bin\x86\Debug\Content\images\textures\tex - Copy (16).xnb</Output>
+      <Time>2014-02-01T20:28:45.6495485-08:00</Time>
+    </Item>
+    <Item>
+      <Source>images\textures\tex - Copy (17).jpg</Source>
+      <Name>images\textures\tex - Copy (17)</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\stett\Source\clover\clover\clover\bin\x86\Debug\Content\images\textures\tex - Copy (17).xnb</Output>
+      <Time>2014-02-01T20:28:45.6495485-08:00</Time>
+    </Item>
+    <Item>
+      <Source>images\textures\tex - Copy (18).jpg</Source>
+      <Name>images\textures\tex - Copy (18)</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\stett\Source\clover\clover\clover\bin\x86\Debug\Content\images\textures\tex - Copy (18).xnb</Output>
+      <Time>2014-02-01T20:28:45.6495485-08:00</Time>
+    </Item>
+    <Item>
+      <Source>images\textures\tex - Copy (19).jpg</Source>
+      <Name>images\textures\tex - Copy (19)</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\stett\Source\clover\clover\clover\bin\x86\Debug\Content\images\textures\tex - Copy (19).xnb</Output>
+      <Time>2014-02-01T20:28:45.6495485-08:00</Time>
+    </Item>
+    <Item>
+      <Source>images\textures\tex - Copy (20).jpg</Source>
+      <Name>images\textures\tex - Copy (20)</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\stett\Source\clover\clover\clover\bin\x86\Debug\Content\images\textures\tex - Copy (20).xnb</Output>
+      <Time>2014-02-01T20:28:45.6495485-08:00</Time>
+    </Item>
+    <Item>
+      <Source>images\textures\tex - Copy (21).jpg</Source>
+      <Name>images\textures\tex - Copy (21)</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\stett\Source\clover\clover\clover\bin\x86\Debug\Content\images\textures\tex - Copy (21).xnb</Output>
+      <Time>2014-02-01T20:28:45.6495485-08:00</Time>
+    </Item>
+    <Item>
+      <Source>images\textures\tex - Copy (22).jpg</Source>
+      <Name>images\textures\tex - Copy (22)</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\stett\Source\clover\clover\clover\bin\x86\Debug\Content\images\textures\tex - Copy (22).xnb</Output>
+      <Time>2014-02-01T20:28:45.6495485-08:00</Time>
+    </Item>
+    <Item>
+      <Source>images\textures\tex - Copy (23).jpg</Source>
+      <Name>images\textures\tex - Copy (23)</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\stett\Source\clover\clover\clover\bin\x86\Debug\Content\images\textures\tex - Copy (23).xnb</Output>
+      <Time>2014-02-01T20:28:45.6495485-08:00</Time>
+    </Item>
+    <Item>
+      <Source>images\textures\tex - Copy (24).jpg</Source>
+      <Name>images\textures\tex - Copy (24)</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\stett\Source\clover\clover\clover\bin\x86\Debug\Content\images\textures\tex - Copy (24).xnb</Output>
+      <Time>2014-02-01T20:28:45.6495485-08:00</Time>
+    </Item>
+    <Item>
+      <Source>images\textures\tex - Copy (25).jpg</Source>
+      <Name>images\textures\tex - Copy (25)</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\stett\Source\clover\clover\clover\bin\x86\Debug\Content\images\textures\tex - Copy (25).xnb</Output>
+      <Time>2014-02-01T20:28:45.6495485-08:00</Time>
+    </Item>
+    <Item>
+      <Source>images\textures\tex - Copy (26).jpg</Source>
+      <Name>images\textures\tex - Copy (26)</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\stett\Source\clover\clover\clover\bin\x86\Debug\Content\images\textures\tex - Copy (26).xnb</Output>
+      <Time>2014-02-01T20:28:45.6495485-08:00</Time>
+    </Item>
+    <Item>
+      <Source>images\textures\tex - Copy (27).jpg</Source>
+      <Name>images\textures\tex - Copy (27)</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\stett\Source\clover\clover\clover\bin\x86\Debug\Content\images\textures\tex - Copy (27).xnb</Output>
+      <Time>2014-02-01T20:28:45.6495485-08:00</Time>
+    </Item>
+    <Item>
+      <Source>images\textures\tex - Copy (28).jpg</Source>
+      <Name>images\textures\tex - Copy (28)</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\stett\Source\clover\clover\clover\bin\x86\Debug\Content\images\textures\tex - Copy (28).xnb</Output>
+      <Time>2014-02-01T20:28:45.6495485-08:00</Time>
+    </Item>
+    <Item>
+      <Source>images\textures\tex - Copy (29).jpg</Source>
+      <Name>images\textures\tex - Copy (29)</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\stett\Source\clover\clover\clover\bin\x86\Debug\Content\images\textures\tex - Copy (29).xnb</Output>
+      <Time>2014-02-01T20:28:45.6495485-08:00</Time>
+    </Item>
+    <Item>
+      <Source>images\textures\tex - Copy (30).jpg</Source>
+      <Name>images\textures\tex - Copy (30)</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\stett\Source\clover\clover\clover\bin\x86\Debug\Content\images\textures\tex - Copy (30).xnb</Output>
+      <Time>2014-02-01T20:28:45.6495485-08:00</Time>
+    </Item>
+    <BuildSuccessful>true</BuildSuccessful>
+    <Settings>
+      <TargetPlatform>Windows</TargetPlatform>
+      <TargetProfile>HiDef</TargetProfile>
+      <BuildConfiguration>Debug</BuildConfiguration>
+      <CompressContent>false</CompressContent>
+      <RootDirectory>C:\Users\stett\Source\clover\clover\cloverContent\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\stett\Source\clover\clover\clover\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\stett\Source\clover\clover\cloverContent\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\stett\Source\clover\clover\clover\bin\x86\Debug\Content\</OutputDirectory>
+    </Settings>
+    <Assemblies>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.XImporter.dll</Key>
+        <Value>2010-08-23T09:41:18-07:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.VideoImporters.dll</Key>
+        <Value>2010-08-23T09:41:18-07:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.TextureImporter.dll</Key>
+        <Value>2010-08-23T09:41:18-07:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.FBXImporter.dll</Key>
+        <Value>2010-08-23T09:41:18-07:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.EffectImporter.dll</Key>
+        <Value>2010-08-23T09:41:18-07:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.AudioImporters.dll</Key>
+        <Value>2010-08-23T09:41:18-07:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\WINDOWS\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
+        <Value>2013-10-31T18:28:22.2814785-07:00</Value>
+      </Assembly>
+    </Assemblies>
+  </Asset>
+</XnaContent>

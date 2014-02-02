@@ -1,0 +1,41 @@
+C:\Users\stett\Source\clover\clover\clover\bin\x86\Debug\clover.exe
+C:\Users\stett\Source\clover\clover\clover\bin\x86\Debug\clover.pdb
+C:\Users\stett\Source\clover\clover\clover\obj\x86\Debug\clover.csprojResolveAssemblyReference.cache
+C:\Users\stett\Source\clover\clover\clover\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\stett\Source\clover\clover\clover\obj\x86\Debug\clover.exe
+C:\Users\stett\Source\clover\clover\clover\obj\x86\Debug\clover.pdb
+C:\Users\stett\Source\clover\clover\clover\bin\x86\Debug\Content\images\reference-beard.xnb
+C:\Users\stett\Source\clover\clover\clover\bin\x86\Debug\Content\images\reference-full.xnb
+C:\Users\stett\Source\clover\clover\clover\bin\x86\Debug\Content\images\reference.xnb
+C:\Users\stett\Source\clover\clover\clover\bin\x86\Debug\Content\fonts\consolas.xnb
+C:\Users\stett\Source\clover\clover\clover\bin\x86\Debug\Content\images\textures\tex - Copy (10).xnb
+C:\Users\stett\Source\clover\clover\clover\bin\x86\Debug\Content\images\textures\tex - Copy (11).xnb
+C:\Users\stett\Source\clover\clover\clover\bin\x86\Debug\Content\images\textures\tex - Copy (12).xnb
+C:\Users\stett\Source\clover\clover\clover\bin\x86\Debug\Content\images\textures\tex - Copy (2).xnb
+C:\Users\stett\Source\clover\clover\clover\bin\x86\Debug\Content\images\textures\tex - Copy (3).xnb
+C:\Users\stett\Source\clover\clover\clover\bin\x86\Debug\Content\images\textures\tex - Copy (4).xnb
+C:\Users\stett\Source\clover\clover\clover\bin\x86\Debug\Content\images\textures\tex - Copy (5).xnb
+C:\Users\stett\Source\clover\clover\clover\bin\x86\Debug\Content\images\textures\tex - Copy (6).xnb
+C:\Users\stett\Source\clover\clover\clover\bin\x86\Debug\Content\images\textures\tex - Copy (7).xnb
+C:\Users\stett\Source\clover\clover\clover\bin\x86\Debug\Content\images\textures\tex - Copy (8).xnb
+C:\Users\stett\Source\clover\clover\clover\bin\x86\Debug\Content\images\textures\tex - Copy (9).xnb
+C:\Users\stett\Source\clover\clover\clover\bin\x86\Debug\Content\images\textures\tex - Copy.xnb
+C:\Users\stett\Source\clover\clover\clover\bin\x86\Debug\Content\images\textures\tex.xnb
+C:\Users\stett\Source\clover\clover\clover\bin\x86\Debug\Content\images\textures\tex - Copy (13).xnb
+C:\Users\stett\Source\clover\clover\clover\bin\x86\Debug\Content\images\textures\tex - Copy (14).xnb
+C:\Users\stett\Source\clover\clover\clover\bin\x86\Debug\Content\images\textures\tex - Copy (15).xnb
+C:\Users\stett\Source\clover\clover\clover\bin\x86\Debug\Content\images\textures\tex - Copy (16).xnb
+C:\Users\stett\Source\clover\clover\clover\bin\x86\Debug\Content\images\textures\tex - Copy (17).xnb
+C:\Users\stett\Source\clover\clover\clover\bin\x86\Debug\Content\images\textures\tex - Copy (18).xnb
+C:\Users\stett\Source\clover\clover\clover\bin\x86\Debug\Content\images\textures\tex - Copy (19).xnb
+C:\Users\stett\Source\clover\clover\clover\bin\x86\Debug\Content\images\textures\tex - Copy (20).xnb
+C:\Users\stett\Source\clover\clover\clover\bin\x86\Debug\Content\images\textures\tex - Copy (21).xnb
+C:\Users\stett\Source\clover\clover\clover\bin\x86\Debug\Content\images\textures\tex - Copy (22).xnb
+C:\Users\stett\Source\clover\clover\clover\bin\x86\Debug\Content\images\textures\tex - Copy (23).xnb
+C:\Users\stett\Source\clover\clover\clover\bin\x86\Debug\Content\images\textures\tex - Copy (24).xnb
+C:\Users\stett\Source\clover\clover\clover\bin\x86\Debug\Content\images\textures\tex - Copy (25).xnb
+C:\Users\stett\Source\clover\clover\clover\bin\x86\Debug\Content\images\textures\tex - Copy (26).xnb
+C:\Users\stett\Source\clover\clover\clover\bin\x86\Debug\Content\images\textures\tex - Copy (27).xnb
+C:\Users\stett\Source\clover\clover\clover\bin\x86\Debug\Content\images\textures\tex - Copy (28).xnb
+C:\Users\stett\Source\clover\clover\clover\bin\x86\Debug\Content\images\textures\tex - Copy (29).xnb
+C:\Users\stett\Source\clover\clover\clover\bin\x86\Debug\Content\images\textures\tex - Copy (30).xnb
