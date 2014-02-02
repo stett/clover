@@ -22,8 +22,9 @@ namespace clover
          */
 
         public const int POOL_SIZE = 400;
+        public const int GENOME_LENGTH = 32;
         public const float GENE_MUTATION_PROB = 0.08f; //.05
-        public const float GENOME_MUTATION_PROB = 0.01f; //.001
+        public const float GENOME_MUTATION_PROB = 0.05f; //.001
         public const int POINT_TEST_RESOLUTION = 6;
         public static Vector2 REFERENCE_SIZE = new Vector2(150, 180);
         public static Vector2 TEXTURE_SIZE = new Vector2(40, 40);
@@ -55,6 +56,8 @@ namespace clover
         int i_steps;
         Color[] reference_colors;
         Color[] target_colors;
+        List<float> fitness_history;
+        TimeSpan time;
 
 
         /*
@@ -67,6 +70,7 @@ namespace clover
             game = _game;
             num_gens = 0;
             set_phase(Phases.Initialize);
+            fitness_history = new List<float>();
         }
 
 
@@ -80,6 +84,8 @@ namespace clover
         }
         public override void Update(GameTime gt)
         {
+            time += gt.ElapsedGameTime;
+
             for (int ii = 0; ii < i_steps; ii++)
             {
                 if (phase == Phases.Initialize)
@@ -87,7 +93,7 @@ namespace clover
                     // Generate a random initial generation. In this context,
                     // the counter "i" is meaningless.
                     i_max = 0;
-                    current_generation = Generation.Rand(num_textures());
+                    current_generation = Generation.Rand(GENOME_LENGTH);//num_textures());
                     set_phase(Phases.CalculateFitnesses);
                     num_gens = 0;
                     fittest = null;
@@ -98,7 +104,7 @@ namespace clover
                     // to keep track of the fittest individual. In this context,
                     // the counter "i" is the index of the current individual.
                     i_max = POOL_SIZE;
-                    i_steps = 30;
+                    i_steps = 10;
                     if (i == 0) current_generation.total_fitness = 0.0f;
                     if (i < i_max)
                     {
@@ -112,6 +118,7 @@ namespace clover
                     else
                     {
                         Genome new_fittest = current_generation.get_fittest_individual();
+                        fitness_history.Add(new_fittest.fitness);
                         if (fittest == null || new_fittest.fitness > fittest.fitness)
                             set_fittest(new_fittest);
                         set_phase(Phases.MakeBabies);
@@ -190,14 +197,14 @@ namespace clover
             // Draw Textures to the render target
             SpriteBatch sprite_batch = new SpriteBatch(game.GraphicsDevice);
             sprite_batch.Begin(SpriteSortMode.Immediate, Graphics.MultiplyBlendState());
-            for (int i = 0; i < num_textures(); i++)
+            for (int i = 0; i < GENOME_LENGTH; i++)
             {
                 Gene gene = genome.genes[i];
-                Texture2D texture = textures[i];
+                Texture2D texture = textures[0];//[i];
                 Vector2 scale = new Vector2(
                     TEXTURE_SIZE.X / texture.Width * (float)Math.Cos(gene.azimuth),
                     TEXTURE_SIZE.Y / texture.Height * (float)Math.Cos(gene.pitch));
-                sprite_batch.Draw(textures[0]/*textures[i]*/, gene.position, null, Color.White, gene.roll, TEXTURE_SIZE * 0.5f, scale, SpriteEffects.None, 0.0f);
+                sprite_batch.Draw(texture, gene.position, null, new Color(.5f, .5f, .5f), gene.roll, TEXTURE_SIZE * 0.5f, scale, SpriteEffects.None, 0.0f);
             }
             sprite_batch.End();
 
@@ -207,8 +214,8 @@ namespace clover
 
         float calculate_fitness(Genome genome)
         {
-            if (num_textures() != genome.genes.Count)
-                throw new System.Exception("Genome length must match the number of textures");
+            //if (num_textures() != genome.genes.Count)
+            //    throw new System.Exception("Genome length must match the number of textures");
 
             // Render the genome to the target 
             render(genome);
@@ -361,6 +368,14 @@ namespace clover
         public Texture2D get_fittest_texture()
         {
             return fittest_texture;
+        }
+        public List<float> get_fitness_history()
+        {
+            return fitness_history;
+        }
+        public TimeSpan get_time()
+        {
+            return time;
         }
 
         #endregion

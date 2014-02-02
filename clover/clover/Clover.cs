@@ -31,8 +31,22 @@ namespace clover
         Evolver evolver;
         States state;
         KeyboardInput keyboard;
+        Texture2D pixel;
+
+        /*
+         * Constants
+         */
 
         const float SCALE = 4.0f;
+
+        /*
+         * Settings
+         */
+
+        bool show_reference = true;
+        bool show_graph = true;
+        bool show_hud = true;
+        bool show_intermediates = true;
 
 
         /*
@@ -81,12 +95,14 @@ namespace clover
                 throw new DirectoryNotFoundException();
 
             // Load all files that matches the file filter
-            FileInfo[] files = dir.GetFiles("*.*");
+            /*FileInfo[] files = dir.GetFiles("*.*");
             foreach (FileInfo file in files)
             {
                 string f_name = Path.GetFileNameWithoutExtension(file.Name);
                 evolver.add_texture(Content.Load<Texture2D>("images/textures/" + f_name));
-            }
+            }*/
+            pixel = Content.Load<Texture2D>("images/textures/tex");
+            evolver.add_texture(pixel);
 
             // Create the sprite batch and load the font
             sprite_batch = new SpriteBatch(GraphicsDevice);
@@ -111,6 +127,12 @@ namespace clover
                 else state = States.Paused;
             }
 
+            // Toggle reference image
+            if (keyboard.key_pressed(Keys.F1)) show_reference = !show_reference;
+            if (keyboard.key_pressed(Keys.F2)) show_graph = !show_graph;
+            if (keyboard.key_pressed(Keys.F3)) show_hud = !show_hud;
+            if (keyboard.key_pressed(Keys.F4)) show_intermediates = !show_intermediates;
+
             // Update the evolver
             if (state == States.Running)
             {
@@ -121,33 +143,60 @@ namespace clover
             base.Update(gt);
         }
 
-        protected override void Draw(GameTime gameTime)
+        protected override void Draw(GameTime gt)
         {
             // Corn flower blue? Seriously? I want fucking white.
             GraphicsDevice.Clear(Color.White);
 
             //
-            String str_state = "?";
-            if (state == States.Paused) str_state = "PAUSED";
-            else if (state == States.Running) str_state = "RUNNING";
-            String str_hud = "State: " + str_state + "\n" +
-                             "Phase: " + evolver.get_phase_str() + " - " + evolver.get_phase_completion() * 100 + "%\n" +
-                             "Generation: " + evolver.get_num_generations() + "\n" +
-                             "Best Fitness: " + evolver.get_best_fitness() * 100 + "%";
-
-            //
             sprite_batch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend);
-            if (evolver.get_phase() == Evolver.Phases.CalculateFitnesses)
+
+            // Draw the state of the evolver
+            if (show_intermediates && evolver.get_phase() == Evolver.Phases.CalculateFitnesses)
                 sprite_batch.Draw(evolver.get_target(), new Vector2(0), null, Color.White, 0.0f, Vector2.Zero, SCALE, SpriteEffects.None, 0.0f);
             else
                 sprite_batch.Draw(evolver.get_fittest_texture(), new Vector2(0), null, Color.White, 0.0f, Vector2.Zero, SCALE, SpriteEffects.None, 0.0f);
-            sprite_batch.Draw(evolver.get_reference(), new Vector2(0), null, Color.White * .2f, 0.0f, Vector2.Zero, SCALE, SpriteEffects.None, 0.0f);
-            sprite_batch.DrawString(sprite_font, str_hud, new Vector2(20.0f, 20.0f), Color.Black);
-            sprite_batch.DrawString(sprite_font, str_hud, new Vector2(19.0f, 19.0f), Color.White);
+
+            // Draw the reference image
+            if (show_reference)
+                sprite_batch.Draw(evolver.get_reference(), new Vector2(0), null, Color.White * .2f, 0.0f, Vector2.Zero, SCALE, SpriteEffects.None, 0.0f);
+
+            // Draw hud text
+            if (show_hud)
+            {
+                String str_state = "?";
+                if (state == States.Paused) str_state = "PAUSED";
+                else if (state == States.Running) str_state = "RUNNING";
+                String str_hud = "State: " + str_state + "\n" +
+                                 "Phase: " + evolver.get_phase_str() + " - " + evolver.get_phase_completion() * 100 + "%\n" +
+                                 "Generation: " + evolver.get_num_generations() + "\n" +
+                                 "Best Fitness: " + evolver.get_best_fitness() * 100 + "%" + "\n" +
+                                 "Time: " + evolver.get_time();
+                sprite_batch.DrawString(sprite_font, str_hud, new Vector2(20.0f, 20.0f), Color.Black);
+                sprite_batch.DrawString(sprite_font, str_hud, new Vector2(19.0f, 19.0f), Color.White);
+            }
+
+            // Draw evolver fitness history plot
+            if (show_graph)
+            {
+                float graph_scale = 5.0f;
+                List<float> fitness_history = evolver.get_fitness_history();
+                int x = 0;
+                int i_0 = (int)Math.Max(0, fitness_history.Count - Math.Ceiling(graphics.PreferredBackBufferWidth / graph_scale) + 1);
+                for (int i = i_0; i < fitness_history.Count; i++)
+                {
+                    float fitness = fitness_history[i];
+                    Vector2 scale = new Vector2(graph_scale / pixel.Width, graph_scale / pixel.Height);
+                    sprite_batch.Draw(pixel, new Vector2(graph_scale * x, graphics.PreferredBackBufferHeight - fitness * 100.0f), null, Color.HotPink, 0, Vector2.Zero, scale, SpriteEffects.None, 0.0f);
+                    x++;
+                }
+                sprite_batch.Draw(pixel, new Vector2(0, graphics.PreferredBackBufferHeight - 100.0f), null, Color.HotPink, 0, Vector2.Zero, new Vector2(graphics.PreferredBackBufferWidth / pixel.Width, 1.0f / pixel.Height), SpriteEffects.None, 0.0f);
+            }
+
             sprite_batch.End();
 
             //
-            base.Draw(gameTime);
+            base.Draw(gt);
         }
     }
 }
