@@ -167,11 +167,17 @@ namespace clover
                 String str_state = "?";
                 if (state == States.Paused) str_state = "PAUSED";
                 else if (state == States.Running) str_state = "RUNNING";
-                String str_hud = "State: " + str_state + "\n" +
-                                 "Phase: " + evolver.get_phase_str() + " - " + evolver.get_phase_completion() * 100 + "%\n" +
-                                 "Generation: " + evolver.get_num_generations() + "\n" +
-                                 "Best Fitness: " + evolver.get_best_fitness() * 100 + "%" + "\n" +
-                                 "Time: " + evolver.get_time();
+                String str_hud = "State:       " + str_state + "\n" +
+                                 "Phase:       " + evolver.get_phase_str() + " - " + evolver.get_phase_completion() * 100 + "%\n" +
+                                 "Gen:         " + evolver.get_num_generations() + "\n" +
+                                 "Most Fit:    " + evolver.get_best_fitness() * 100 + "%" + "\n" +
+                                 "Time:        " + evolver.get_time() + "\n" +
+                                 "Time/gen:    " + evolver.get_time().TotalSeconds / Math.Max(evolver.get_num_generations(), 1.0f) + "s\n" +
+                                 "\n" +
+                                 "Pool:        " + Evolver.POOL_SIZE + "\n" +
+                                 "Genome Len.: " + Evolver.GENOME_LENGTH + "\n" +
+                                 "Mut. Prob. (genome, gene): " + Evolver.GENOME_MUTATION_PROB * 100 + "% , " + Evolver.GENE_MUTATION_PROB * 100 + "%\n" +
+                                 "";
                 sprite_batch.DrawString(sprite_font, str_hud, new Vector2(20.0f, 20.0f), Color.Black);
                 sprite_batch.DrawString(sprite_font, str_hud, new Vector2(19.0f, 19.0f), Color.White);
             }

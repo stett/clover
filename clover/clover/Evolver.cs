@@ -25,7 +25,7 @@ namespace clover
         public const int GENOME_LENGTH = 32;
         public const float GENE_MUTATION_PROB = 0.08f; //.05
         public const float GENOME_MUTATION_PROB = 0.05f; //.001
-        public const int POINT_TEST_RESOLUTION = 6;
+        public const int POINT_TEST_RESOLUTION = 5;
         public static Vector2 REFERENCE_SIZE = new Vector2(150, 180);
         public static Vector2 TEXTURE_SIZE = new Vector2(40, 40);
 
@@ -200,11 +200,12 @@ namespace clover
             for (int i = 0; i < GENOME_LENGTH; i++)
             {
                 Gene gene = genome.genes[i];
-                Texture2D texture = textures[0];//[i];
-                Vector2 scale = new Vector2(
-                    TEXTURE_SIZE.X / texture.Width * (float)Math.Cos(gene.azimuth),
-                    TEXTURE_SIZE.Y / texture.Height * (float)Math.Cos(gene.pitch));
-                sprite_batch.Draw(texture, gene.position, null, new Color(.5f, .5f, .5f), gene.roll, TEXTURE_SIZE * 0.5f, scale, SpriteEffects.None, 0.0f);
+                Texture2D texture = textures[0];
+                //Vector2 scale = new Vector2(
+                //    TEXTURE_SIZE.X / texture.Width * (float)Math.Cos(gene.azimuth),
+                //    TEXTURE_SIZE.Y / texture.Height * (float)Math.Cos(gene.pitch));
+                Vector2 scale = new Vector2(gene.size.X / texture.Width, gene.size.Y / texture.Height);
+                sprite_batch.Draw(texture, gene.position, null, new Color(.5f, .5f, .5f), gene.angle, TEXTURE_SIZE * 0.5f, scale, SpriteEffects.None, 0.0f);
             }
             sprite_batch.End();
 
