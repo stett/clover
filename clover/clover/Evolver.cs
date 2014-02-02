@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.IO;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
@@ -21,14 +22,15 @@ namespace clover
          * Constant settings
          */
 
-        public const int POOL_SIZE = 500;
+        public const int POOL_SIZE = 400;
         public const int GENOME_LENGTH = 32;
         public const float GENE_MUTATION_PROB = 0.08f; //.05
         public const float GENOME_MUTATION_PROB = 0.05f; //.001
-        public const int POINT_TEST_RESOLUTION = 5;
+        public const int POINT_TEST_RESOLUTION = 2;
+        public const int GENS_PER_FIXTURE = 1;
+        public static float TEXTURE_OPACITY = .8f;
         public static Vector2 REFERENCE_SIZE = new Vector2(150, 180);
-        public static Vector2 TEXTURE_SIZE = new Vector2(40, 40);
-        public const int GENS_PER_FIXTURE = 2;
+        public static Vector2 TEXTURE_SIZE = new Vector2(50, 50);
 
 
         /*
@@ -97,15 +99,6 @@ namespace clover
                     i_max = 0;
                     set_phase(Phases.RandomizePopulation);
                 }
-                else if (phase == Phases.RandomizePopulation)
-                {
-                    // Generate a random initial generation. In this context,
-                    // the counter "i" is meaningless.
-                    i_max = 0;
-                    current_generation = Generation.Rand(GENOME_LENGTH);//num_textures());
-                    set_phase(Phases.CalculateFitnesses);
-                    fittest = null;
-                }
                 else if (phase == Phases.GenerateFixture)
                 {
                     // Generate a fixture texture. That is, render the current
@@ -120,6 +113,15 @@ namespace clover
                         num_fixtures++;
                         set_phase(Phases.RandomizePopulation);
                     } else set_phase(Phases.CalculateFitnesses);
+                }
+                else if (phase == Phases.RandomizePopulation)
+                {
+                    // Generate a random initial generation. In this context,
+                    // the counter "i" is meaningless.
+                    i_max = 0;
+                    current_generation = Generation.Rand(GENOME_LENGTH);//num_textures());
+                    set_phase(Phases.CalculateFitnesses);
+                    fittest = null;
                 }
                 else if (phase == Phases.CalculateFitnesses)
                 {
@@ -215,11 +217,11 @@ namespace clover
 
             // Set up and clear the render target
             game.GraphicsDevice.SetRenderTarget(target);
-            game.GraphicsDevice.Clear(Color.White);
+            game.GraphicsDevice.Clear(Color.White);//new Color(new Vector3(.5f)));//Color.White);
 
             // Begin drawing to the render target
             SpriteBatch sprite_batch = new SpriteBatch(game.GraphicsDevice);
-            sprite_batch.Begin(SpriteSortMode.Immediate, Graphics.MultiplyBlendState());
+            sprite_batch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);//Graphics.MultiplyBlendState());
 
             // Render the fixture backdrop
             if (num_fixtures > 0)
@@ -236,7 +238,7 @@ namespace clover
                 //    TEXTURE_SIZE.X / texture.Width * (float)Math.Cos(gene.azimuth),
                 //    TEXTURE_SIZE.Y / texture.Height * (float)Math.Cos(gene.pitch));
                 Vector2 scale = new Vector2(gene.size.X / texture.Width, gene.size.Y / texture.Height);
-                sprite_batch.Draw(texture, gene.position, null, new Color(.5f, .5f, .5f), gene.angle, TEXTURE_SIZE * 0.5f, scale, SpriteEffects.None, 0.0f);
+                sprite_batch.Draw(texture, gene.position, null, gene.color * TEXTURE_OPACITY, gene.angle, TEXTURE_SIZE * 0.5f, scale, SpriteEffects.None, 0.0f);
             }
             sprite_batch.End();
 
@@ -249,13 +251,13 @@ namespace clover
             // Save the rendering of the current fittest individual
             fittest_texture.GetData(target_colors);
             fixture.SetData(target_colors);
-            /*game.GraphicsDevice.SetRenderTarget(fixture);
-            game.GraphicsDevice.Clear(Color.White);
-            SpriteBatch sprite_batch = new SpriteBatch(game.GraphicsDevice);
-            sprite_batch.Begin(SpriteSortMode.Immediate, Graphics.MultiplyBlendState());
-
-            sprite_batch.End();
-            game.GraphicsDevice.SetRenderTarget(null);*/
+            
+            // Save the fixture to a file
+            String dirname = "evolution/" + DateTime.Now.ToString("MM-dd-yy") + "/";
+            String fname = DateTime.Now.ToString("H-mm-ss") + ".jpeg";
+            Directory.CreateDirectory(dirname);
+            Stream stream = File.Create(dirname + fname); 
+            fixture.SaveAsJpeg(stream, fixture.Width, fixture.Height);
         }
 
         float calculate_fitness(Genome genome)

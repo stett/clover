@@ -159,7 +159,7 @@ namespace clover
 
             // Draw the reference image
             if (show_reference)
-                sprite_batch.Draw(evolver.get_reference(), new Vector2(0), null, Color.White * .2f, 0.0f, Vector2.Zero, SCALE, SpriteEffects.None, 0.0f);
+                sprite_batch.Draw(evolver.get_reference(), new Vector2(0), null, Color.White * .3f, 0.0f, Vector2.Zero, SCALE, SpriteEffects.None, 0.0f);
 
             // Draw hud text
             if (show_hud)
