@@ -22,12 +22,13 @@ namespace clover
          * Constant settings
          */
 
-        public const int POOL_SIZE = 400;
-        public const int GENOME_LENGTH = 16;
+        public const int POOL_SIZE = 100;//600;
+        public const int GENOME_LENGTH = 80;//5;//20;
         public const float GENE_MUTATION_PROB = .1f;//0.08f; //.05
-        public const float GENOME_MUTATION_PROB = .1f;//0.05f; //.001
+        public const float GENOME_MUTATION_PROB = .5f;//0.05f; //.001
         public const int POINT_TEST_RESOLUTION = 2;
-        public const int GENS_PER_FIXTURE = 15;
+        public const int GENS_PER_FIXTURE = 35;
+        //public const bool USE_FIXTURES = false;
         public static Vector2 REFERENCE_SIZE = new Vector2(150, 180);
         public static Vector2 TEXTURE_SIZE = new Vector2(60);
         public static Vector2 FULL_RESOLUTION = new Vector2(2000, 2400);
@@ -114,7 +115,11 @@ namespace clover
                     {
                         update_fixture();
                         num_fixtures++;
+                        //set_phase(Phases.CalculateFitnesses);
                         set_phase(Phases.RandomizePopulation);
+
+                        String fname = num_fixtures.ToString() + ".jpeg";
+                        save(fname);
                     } else set_phase(Phases.CalculateFitnesses);
                 }
                 else if (phase == Phases.RandomizePopulation)
@@ -260,8 +265,7 @@ namespace clover
             fixture.SetData(target_colors);
             
             // Save the fixture to a file
-            String fname = num_fixtures.ToString() + ".jpeg";
-            save(fname);
+            
         }
 
         float calculate_fitness(Genome genome)
@@ -333,7 +337,7 @@ namespace clover
             // Loop through each gene, randomly mutating
             for (int i = 0; i < individual.genes.Count; i++)
                 if (Utils.rand() < GENE_MUTATION_PROB)
-                    individual.genes[i] = Gene.Mutate(individual.genes[i]);//Gene.Rand(get_best_fitness());
+                    individual.genes[i] = Gene.Mutate(individual.genes[i], current_generation.get_fittest_individual().fitness);//Gene.Rand(get_best_fitness());
         }
 
         void save(String fname, bool full=false)
